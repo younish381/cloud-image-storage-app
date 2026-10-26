@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block body %}
+<form method="post" class="card narrow"><h2>{{ title }}</h2>
+<label>Email<input type="email" name="email" required></label>
+<label>Password<input type="password" name="password" required minlength="6"></label>
+<button>{{ "Register" if register else "Login" }}</button>
+<p>{% if register %}Have an account? <a href="{{ url_for('login') }}">Login</a>{% else %}New here? <a href="{{ url_for('register') }}">Register</a>{% endif %}</p></form>{% endblock %}

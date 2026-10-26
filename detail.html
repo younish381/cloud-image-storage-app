@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block body %}
+<a href="{{ url_for('gallery') }}">&larr; Back</a>
+<section class="card"><img class="full" src="{{ url_for('serve', iid=img.id) }}" alt="">
+<table><tr><th>File name</th><td>{{ img.file_name }}</td></tr><tr><th>Category</th><td>{{ img.category }}</td></tr>
+<tr><th>Tags</th><td>{{ img.tags or '-' }}</td></tr><tr><th>Size</th><td>{{ img.size|human }}</td></tr>
+<tr><th>Uploaded</th><td>{{ img.uploaded_at.strftime('%d-%m-%Y %H:%M') }} UTC</td></tr>
+<tr><th>Owner ID</th><td>{{ img.owner_id }}</td></tr><tr><th>Storage</th><td>{{ img.storage_mode|upper }}</td></tr>
+<tr><th>Storage reference</th><td>{{ img.storage_key }}</td></tr></table>
+<form method="post" action="{{ url_for('share', iid=img.id) }}" class="row"><label>Share link valid for (hours)
+<input type="number" name="hours" value="24" min="1" max="168"></label><button>Create share link</button></form>
+{% if img.share_link %}<p class="link">{{ img.share_link }}</p>{% endif %}
+<form method="post" action="{{ url_for('delete', iid=img.id) }}" onsubmit="return confirm('Delete this image permanently?')"><button class="danger">Delete image</button></form></section>{% endblock %}
