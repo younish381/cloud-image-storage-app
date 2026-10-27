@@ -1,7 +1,0 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{ title or "Cloud Image Library" }} - S. Younish</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
-<header><span class="brand">&#9729; Cloud Image Library</span>
-{% if session.get('uid') %}<form method="post" action="{{ url_for('logout') }}"><button class="ghost">Logout</button></form>{% endif %}</header>
-<main>{% with m = get_flashed_messages(with_categories=true) %}{% for c,t in m %}<div class="flash {{c}}">{{t}}</div>{% endfor %}{% endwith %}
-{% block body %}{% endblock %}</main>
-<footer>Student: S. Younish &middot; 5325128021 &middot; Bucket: younish-image-store-5325128021</footer></body></html>
